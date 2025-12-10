@@ -1,4 +1,5 @@
 // Task 1: Verification Log
+console.log("Status Manager Started");
 
 // Global variable setup (required for Task 10 using setInterval/clearInterval)
 let intervalId = null;
@@ -14,12 +15,16 @@ const itemList = document.getElementById("item-list");
 
 /* ======================================= */
 // --- Task 3: Selecting and Changing Inner HTML ---
-// Write the code here to select the mainTitle and update its innerHTML:
+
+mainTitle.innerHTML = "Project 3";
+
 // Example: mainTitle.innerHTML = "New Title";
 
 /* ======================================= */
 // --- Task 4: Attribute Modification ---
-// Write the code here to use setAttribute() on the toggleButton element
+
+toggleButton.setAttribute('data-action', "status-toggle");
+
 // to add the required 'data-action' attribute.
 
 /* ======================================= */
