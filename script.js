@@ -31,8 +31,18 @@ toggleButton.setAttribute('data-action', "status-toggle");
 // --- Task 9: Looping and Applying Changes ---
 
 function highlightListItems() {
-	
+
+	// Get all <li> elements
+	const items = document.querySelectorAll("li");
+
+	// Loop through them and set the color to blue
+	for (let i = 0; i < items.length; i++) {
+		items[i].style.color = "blue";
+	}
 }
+
+// Calling function to run once when page loads
+highlightListItems();
 
 /* ======================================= */
 // --- Tasks 5, 6, 7 & 8: Toggle Functionality ---
@@ -74,6 +84,33 @@ function createTimestamp() {
 
 /* ======================================= */
 // --- Task 10: Timed Animation ---
-// Define the startFlashing() and stopFlashing() functions using
-// setInterval() and clearInterval() [8, 9], and bind them to the
-// timerButton using addEventListener for 'click' and 'dblclick' [10].
+
+function startFlashing() {
+
+	// Avoid creating multiple intervals if the user clicks repeatedly
+	if (intervalId !== null) {
+		return
+	}
+
+	// Toggle the .hidden class on the control-panel every 500ms
+	intervalId = setInterval(() => {
+		controlPanel.classList.toggle("hidden");
+	}, 500);
+}
+
+function stopFlashing() {
+
+	// Only stop if an interval is currently running
+	if (intervalId !== null) {
+		clearInterval(intervalId);
+		intervalId = null;
+
+		// Make sure the control panel is visible when the animation stops
+		controlPanel.classList.remove("hidden");
+	}
+
+}
+
+// Bind the functions to the timer button
+timerButton.addEventListener("click", startFlashing);
+timerButton.addEventListener("dblclick", stopFlashing);
