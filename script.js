@@ -16,7 +16,7 @@ const itemList = document.getElementById("item-list");
 /* ======================================= */
 // --- Task 3: Selecting and Changing Inner HTML ---
 
-mainTitle.innerHTML = "Project 3";
+mainTitle.innerHTML = "DOM Project: Ready!";
 
 // Example: mainTitle.innerHTML = "New Title";
 
@@ -29,14 +29,48 @@ toggleButton.setAttribute('data-action', "status-toggle");
 
 /* ======================================= */
 // --- Task 9: Looping and Applying Changes ---
-// Define and call the highlightListItems() function here so it runs on load.
-// You will need to use document.querySelectorAll('li') and a loop structure
-// (like a 'for' loop or 'forEach') to iterate over all list items [3-5].
+
+function highlightListItems() {
+	
+}
 
 /* ======================================= */
 // --- Tasks 5, 6, 7 & 8: Toggle Functionality ---
-// Define the functions (e.g., toggleStatus, createTimestamp) and event listeners
-// here to handle the click event on the toggleButton [6, 7].
+
+function toggleStatus(e) {
+
+	// Task 5: Toggle the hidden class on the status output div
+	statusOutput.classList.toggle("hidden");
+
+	// Task 6: Preventing default anchor behavior
+	e.preventDefault();
+
+	// Task 7: Inline styles on the title based on visibility
+	if (!statusOutput.classList.contains("hidden")) {
+
+		// If visible, title is highlighted yellow
+		mainTitle.style.backgroundColor = "yellow";
+
+		// Task 8: Calling helper function
+		statusOutput.appendChild(createTimestamp());
+
+	} else {
+
+		// If hidden, inline style is removed;
+		mainTitle.style.backgroundColor = "";
+	}
+}
+
+// Task 5: Bind toggleStatus on click of toggle-button
+toggleButton.addEventListener("click", toggleStatus);
+
+// Task 8: Creating helper function for timestamps
+function createTimestamp() {
+	const timestamp = new Date().toLocaleString();
+	const p = document.createElement("p");
+	p.textContent = `Status checked at: ${timestamp}`;
+	return p;
+}
 
 /* ======================================= */
 // --- Task 10: Timed Animation ---
